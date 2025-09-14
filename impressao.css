@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --primary: #1e3a5f;
     --secondary: #1e3a5f;
@@ -344,4 +345,352 @@ header p {
             grid-template-columns: repeat(3, 1fr) !important;
         }
     }
+=======
+:root {
+    --primary: #1e3a5f;
+    --secondary: #1e3a5f;
+    --accent: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --success: #1e3a5f;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+    --card-bg: #ffffff;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.datetime {
+    text-align: right;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+#data {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#hora {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.action-btn {
+    background: var(--light);
+    color: var(--text-dark);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.action-btn.primary {
+    background: var(--secondary);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn.primary:hover {
+    background: #2980b9;
+}
+
+.variedades-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.variedade-bloco {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border-top: 4px solid var(--success);
+    text-align: center;
+}
+
+.variedade-bloco:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.variedade-bloco h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.peso-info {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--success);
+    background: var(--light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.print-footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--light);
+    margin-top: 30px;
+}
+
+/* ESTILOS DE IMPRESSÃO - COM LOGO VISÍVEL */
+@media print {
+    @page {
+        margin: 0.5cm;
+        size: portrait;
+    }
+    
+    body {
+        background: white !important;
+        padding: 0 !important;
+        font-size: 11pt;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    
+    .container {
+        max-width: 100% !important;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Logo Agrobardin - APENAS NA IMPRESSÃO (CORRIGIDO) */
+    header {
+        position: relative;
+        padding-top: 60px !important;
+        text-align: center;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #eee;
+        page-break-inside: avoid;
+    }
+    
+    header::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: 0;
+        width: 225px;
+        height: 225px;
+        background-image: url('agrobardin.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        z-index: 100;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
+    }
+    
+    header h1 {
+        font-size: 16pt !important;
+        margin-bottom: 3px;
+        color: var(--primary) !important;
+        padding-top: 10px;
+    }
+    
+    .datetime {
+        display: none;
+    }
+    
+    header p {
+        font-size: 10pt !important;
+        color: var(--text-light) !important;
+        margin-bottom: 5px;
+    }
+    
+    .buttons-container {
+        display: none !important;
+    }
+    
+    .variedades-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .variedade-bloco {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        border-top: 3px solid var(--success) !important;
+        padding: 12px !important;
+        page-break-inside: avoid;
+    }
+    
+    .variedade-bloco:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    .variedade-bloco h3 {
+        font-size: 11pt !important;
+        margin-bottom: 12px !important;
+        color: var(--text-dark) !important;
+    }
+    
+    .variedade-bloco h3 i {
+        font-size: 11pt !important;
+    }
+    
+    .peso-info {
+        font-size: 12pt !important;
+        padding: 10px !important;
+        background: #f8f9fa !important;
+        color: var(--success) !important;
+        border: 1px solid #e9ecef !important;
+    }
+    
+    .print-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        font-size: 9pt;
+        background: white;
+        border-top: 1px solid #ddd;
+    }
+    
+    /* Garantir que não haja quebras desnecessárias */
+    .variedade-bloco {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Otimizar para impressão */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .datetime {
+        text-align: center;
+    }
+    
+    .variedades-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .variedades-container {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    /* Para impressão em mobile ainda manter 3 colunas */
+    @media print {
+        .variedades-container {
+            grid-template-columns: repeat(3, 1fr) !important;
+        }
+    }
+>>>>>>> 8562c4c306dd4c61f0c7076db545d25bdd0122a9
 }
