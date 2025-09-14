@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Pesagem Rápida - SM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="balanca.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-weight-hanging"></i> Programa de Pesagem Rápida - SM</h1>
+            <p>Cálculo fácil de tara e pesagem de variedades</p>
+        </header>
+
+        <div class="selection-panel">
+            <div class="option-card" id="optionTara">
+                <div class="icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3>Verificação de Nova Tara</h3>
+                <p>Calcule a nova tara do caminhão</p>
+                <button class="select-btn" onclick="selectOption('tara')">Selecionar</button>
+            </div>
+
+            <div class="option-card" id="optionVariedades">
+                <div class="icon">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <h3>Pesagem de 2 Variedades</h3>
+                <p>Calcule o peso de duas variedades</p>
+                <button class="select-btn" onclick="selectOption('variedades')">Selecionar</button>
+            </div>
+        </div>
+
+        <!-- Formulário de Tara -->
+        <div id="taraForm" class="form-container hidden">
+            <div class="form-header">
+                <h2><i class="fas fa-calculator"></i> Verificação de Nova Tara</h2>
+                <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Voltar</button>
+            </div>
+
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="tara"><i class="fas fa-weight-hanging"></i> Tara (kg)</label>
+                    <input type="number" id="tara" step="0.01" placeholder="Ex: 5000">
+                </div>
+
+                <div class="input-group">
+                    <label for="litros"><i class="fas fa-gas-pump"></i> Litros Abastecidos</label>
+                    <input type="number" id="litros" step="0.01" placeholder="Ex: 200">
+                </div>
+
+                <div class="input-group">
+                    <label for="caixas"><i class="fas fa-box"></i> Quantidade de Caixas</label>
+                    <input type="number" id="caixas" placeholder="Ex: 100">
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calcularTara()">
+                <i class="fas fa-calculator"></i> Calcular Nova Tara
+            </button>
+
+            <div id="resultadoTara" class="result-container hidden">
+                <h3><i class="fas fa-check-circle"></i> Resultado</h3>
+                <div class="result-box">
+                    <div class="result-value">Nova Tara: <span id="novaTaraValor">0</span> kg</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Variedades -->
+        <div id="variedadesForm" class="form-container hidden">
+            <div class="form-header">
+                <h2><i class="fas fa-apple-alt"></i> Pesagem de 2 Variedades</h2>
+                <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Voltar</button>
+            </div>
+
+            <div class="input-group full-width">
+                <label for="pesoLiquido"><i class="fas fa-weight"></i> Peso Líquido Total (kg)</label>
+                <input type="number" id="pesoLiquido" step="0.01" placeholder="Ex: 2500">
+            </div>
+
+            <div class="variedades-container">
+                <!-- Bloco 1: Primeira Variedade -->
+                <div class="variedade-bloco">
+                    <h3><i class="fas fa-1"></i> Primeira Variedade</h3>
+                    
+                    <div class="input-group">
+                        <label for="variedade1"><i class="fas fa-list"></i> Variedade</label>
+                        <select id="variedade1">
+                            <option value="">Selecione...</option>
+                            <option value="T. MURCOT">T. MURCOT</option>
+                            <option value="T. MURCOT OLÉ">T. MURCOT OLÉ</option>
+                            <option value="NATAL">NATAL</option>
+                            <option value="BAHIA">BAHIA</option>
+                            <option value="BAHIA CARA-CARA">BAHIA CARA-CARA</option>
+                            <option value="VALÊNCIA">VALÊNCIA</option>
+                            <option value="PERA">PERA</option>
+                            <option value="PONKAN">PONKAN</option>
+                            <option value="DEKOPON">DEKOPON</option>
+                            <option value="T. MONTENEGRINA">T. MONTENEGRINA</option>
+                            <option value="FOLHA MURCHA">FOLHA MURCHA</option>
+                            <option value="LIMÃO">LIMÃO</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caixas1"><i class="fas fa-box"></i> Quantidade de Caixas</label>
+                        <input type="number" id="caixas1" placeholder="Ex: 50">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pesoMedio1"><i class="fas fa-weight"></i> Peso Médio por Caixa (kg)</label>
+                        <input type="number" id="pesoMedio1" step="0.01" placeholder="Ex: 23">
+                    </div>
+                </div>
+
+                <!-- Botão Inverter -->
+                <div class="inverter-container">
+                    <button id="inverterVariedades" class="inverter-btn" onclick="inverterVariedades()">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                </div>
+
+                <!-- Bloco 2: Segunda Variedade -->
+                <div class="variedade-bloco">
+                    <h3><i class="fas fa-2"></i> Segunda Variedade</h3>
+                    
+                    <div class="input-group">
+                        <label for="variedade2"><i class="fas fa-list"></i> Variedade</label>
+                        <select id="variedade2">
+                            <option value="">Selecione...</option>
+                            <option value="T. MURCOT">T. MURCOT</option>
+                            <option value="T. MURCOT OLÉ">T. MURCOT OLÉ</option>
+                            <option value="NATAL">NATAL</option>
+                            <option value="BAHIA">BAHIA</option>
+                            <option value="BAHIA CARA-CARA">BAHIA CARA-CARA</option>
+                            <option value="VALÊNCIA">VALÊNCIA</option>
+                            <option value="PERA">PERA</option>
+                            <option value="PONKAN">PONKAN</option>
+                            <option value="DEKOPON">DEKOPON</option>
+                            <option value="T. MONTENEGRINA">T. MONTENEGRINA</option>
+                            <option value="FOLHA MURCHA">FOLHA MURCHA</option>
+                            <option value="LIMÃO">LIMÃO</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="caixas2"><i class="fas fa-box"></i> Quantidade de Caixas</label>
+                        <input type="number" id="caixas2" placeholder="Ex: 70">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calcularVariedades()">
+                <i class="fas fa-calculator"></i> Calcular Pesagem
+            </button>
+
+            <!-- Bloco 3: Resultado -->
+            <div id="resultadoVariedades" class="result-container hidden">
+                <h3><i class="fas fa-chart-pie"></i> Resultado</h3>
+                <div class="result-box conclusion">
+                    <div class="result-item">
+                        <span class="variedade-name" id="v1Nome"></span>
+                        <span class="result-value" id="v1Resultado"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="variedade-name" id="v2Nome"></span>
+                        <span class="result-value" id="v2Resultado"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão no canto inferior direito -->
+    <a href="impressao.html" class="btn-canto">
+        Peso/caixa por variedade
+    </a>
+
+    <script src="balanca.js"></script>
+</body>
+</html>
